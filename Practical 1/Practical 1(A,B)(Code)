@@ -1,0 +1,149 @@
+#Import Required Libraries
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+#Load dataset
+df = pd.read_csv("games.csv")
+
+#Display First 5 Records
+df.head()
+
+#Display Last 5 Records
+df.tail()
+
+#Display Shape of Dataset
+df.shape
+
+#Display Column Names
+df.columns
+
+#Display Dataset Information
+df.info()
+
+#Display Data Types
+df.dtypes
+
+#Check Missing Values
+df.isnull().sum()
+
+#Check Duplicate Records
+df.duplicated().sum()
+
+#Display Descriptive Statistics
+df.describe()
+
+#Count Unique Values
+df.nunique()
+
+#Display Unique Values of a Particular Column
+df["Genre"].unique()
+
+#Count Product Categories
+df["Genre"].value_counts()
+
+#Count Store Locations
+df["Platform"].value_counts()
+
+#Count Holiday Effect
+df["Region"].value_counts()
+
+#Calculate Average Sales Revenue
+df["Global_Sales"].mean()
+
+#Find Maximum Sales Revenue
+df["Global_Sales"].max()
+
+#Find Minimum Sales Revenue
+df["Global_Sales"].min()
+
+#Correlation Matrix
+df.corr(numeric_only=True)
+
+#Histogram
+plt.hist(df["Global_Sales"])
+plt.title("Global Sales Distribution")
+plt.xlabel("Global Sales")
+plt.ylabel("Frequency")
+plt.show()
+
+#Bar chart
+df["Genre"].value_counts().plot(kind="bar")
+plt.title("Genre")
+plt.xlabel("Genre")
+plt.ylabel("Count")
+plt.show()
+
+#Pie chart
+df["Region"].value_counts().plot(kind="pie", autopct="%1.1f%%")
+plt.title("Region")
+plt.ylabel("")
+plt.show()
+
+#Box plot
+sns.boxplot(y=df["Global_Sales"])
+plt.title("Global Sales Box Plot")
+plt.show()
+
+#Correlation Heatmap
+sns.heatmap(df.corr(numeric_only=True), annot=True, cmap="Blues")
+plt.title("Correlation Heatmap")
+plt.show()
+
+#Import Required Libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+#Load dataset
+df = pd.read_csv("games.csv")
+
+print(df["Genre"].value_counts())
+df["Genre"].value_counts().plot(kind="bar")
+plt.title("Genre Analysis")
+plt.xlabel("Genre")
+plt.ylabel("Number of Games")
+plt.show()
+
+print(df["Platform"].value_counts())
+df["Platform"].value_counts().plot(kind="bar")
+plt.title("Platform Analysis")
+plt.xlabel("Platform")
+plt.ylabel("Number of Games")
+plt.show()
+
+print(df["Year"].value_counts())
+df["Year"].value_counts().plot(kind="bar")
+plt.title("Games by Year")
+plt.xlabel("Year")
+plt.ylabel("Number of Games")
+plt.show()
+
+print(df["Region"].value_counts())
+df["Region"].value_counts().plot(kind="pie", autopct="%1.1f%%")
+plt.title("Region")
+plt.ylabel("")
+plt.show()
+
+plt.hist(df["Global_Sales"], bins=10)
+plt.title("Global Sales Distribution")
+plt.xlabel("Global Sales")
+plt.ylabel("Frequency")
+plt.show()
+
+plt.hist(df["NA_Sales"], bins=10)
+plt.title("NA Sales Distribution")
+plt.xlabel("NA Sales")
+plt.ylabel("Frequency")
+plt.show()
+
+plt.scatter(df["NA_Sales"], df["Global_Sales"])
+plt.title("NA Sales vs Global Sales")
+plt.xlabel("NA Sales")
+plt.ylabel("Global Sales")
+plt.show()
+
+sns.heatmap(df.corr(numeric_only=True), annot=True, cmap="Oranges")
+plt.title("Correlation Heatmap")
+plt.show()
