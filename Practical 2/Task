@@ -1,0 +1,132 @@
+# %%
+import pandas as pd
+import matplotlib.pyplot as plt
+df = pd.read_csv("Retail_sales - Retail_sales.csv")
+category_count = df["Product Category"].value_counts()
+print("Products in each Category:")
+print(category_count)
+
+# %%
+# Sales by category
+category_sales = df.groupby("Product Category")["Sales Revenue (USD)"].sum()
+
+print("\nCategory with Highest Sales:")
+print(category_sales.idxmax(), ":", category_sales.max())
+
+# Bar Chart
+plt.figure(figsize=(8,5))
+category_count.plot(kind="bar", color="skyblue", edgecolor="black")
+plt.title("(Ritesh Chaubey)Products in Each Category")
+plt.xlabel("Product Category")
+plt.ylabel("Number of Products")
+plt.xticks(rotation=45)
+plt.show()
+
+# %%
+import matplotlib.pyplot as plt
+
+store_sales = df.groupby("Store ID")["Sales Revenue (USD)"].sum()
+
+print("Sales Revenue for each Store")
+print(store_sales)
+
+print("\nBest Performing Store")
+print(store_sales.idxmax(), ":", store_sales.max())
+
+print("\nLeast Performing Store")
+print(store_sales.idxmin(), ":", store_sales.min())
+
+plt.figure(figsize=(10,6))
+store_sales.plot(kind="barh", color="orange")
+plt.title("(Ritesh Chaubey)Sales Revenue by Store")
+plt.xlabel("Sales Revenue")
+plt.ylabel("Store ID")
+plt.show()
+
+# %%
+location_sales = df.groupby("Store Location")["Sales Revenue (USD)"].sum()
+
+print("Sales Revenue by Location")
+print(location_sales)
+
+print("\nHighest Sales Location")
+print(location_sales.idxmax(), ":", location_sales.max())
+
+plt.figure(figsize=(12,5))
+location_sales.plot(kind="bar", color="green")
+plt.title("(Ritesh Chaubey)Sales Revenue by Store Location")
+plt.xlabel("Store Location")
+plt.ylabel("Sales Revenue")
+plt.xticks(rotation=90)
+plt.show()
+
+# %%
+units = df["Units Sold"]
+
+print("Mean :", units.mean())
+print("Median :", units.median())
+
+print("Mode :")
+print(units.mode())
+
+print("Minimum :", units.min())
+print("Maximum :", units.max())
+
+print("Range :", units.max() - units.min())
+
+print("Variance :", units.var())
+
+print("Standard Deviation :", units.std())
+
+# %%
+import pandas as pd
+import matplotlib.pyplot as plt
+
+# Load dataset
+df = pd.read_csv("NetFlix - NetFlix.csv")
+
+# Box plot for release year
+plt.figure(figsize=(8,5))
+plt.boxplot(df['release_year'].dropna(), vert=False)
+
+plt.title("Box Plot of Release Year")
+plt.xlabel("Release Year")
+
+plt.show()
+
+# Optional: print statistics
+print("Min:", df['release_year'].min())
+print("Max:", df['release_year'].max())
+print("Median:", df['release_year'].median())
+
+# %%
+import pandas as pd
+
+df = pd.read_csv("NetFlix - NetFlix.csv")
+
+# Filter only movies
+movies = df[df['type'] == 'Movie'].copy()
+
+# %%
+# Filter movies
+movies = df[df['type'] == 'Movie'].copy()
+
+# Extract only numeric part
+movies['duration'] = pd.to_numeric(
+    movies['duration'].astype(str).str.extract(r'(\d+)')[0]
+)
+
+# Drop NaN values
+movies = movies.dropna(subset=['duration'])
+
+# %%
+print(movies['duration'].head())
+
+# %%
+print("Mean:", movies['duration'].mean())
+print("Median:", movies['duration'].median())
+print("Mode:", movies['duration'].mode()[0])
+print("Variance:", movies['duration'].var())
+print("Standard Deviation:", movies['duration'].std())
+
+
